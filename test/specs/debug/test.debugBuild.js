@@ -4,6 +4,11 @@ import applePreferencesPage from '../../pageobjects/apple/apple.preferences.page
 describe('Debug', () => {
   it('Open Apple Preferences App', async () => {
     await AllureTestReporter.addTestStep('Verify UI', async () => {
+      const isMobile = await browser.isMobile;
+      console.log(`Is mobile: ${isMobile} (type: ${typeof isMobile})`);
+      if (typeof isMobile !== 'boolean') {
+        throw new Error('isMobile is not a boolean');
+      }
       await applePreferencesPage.launchApp();
       await applePreferencesPage.waitForPageDisplay();
       const isDisplayed = await applePreferencesPage.isPageDisplayed();
