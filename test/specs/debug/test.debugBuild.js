@@ -9,6 +9,8 @@ describe('Debug', () => {
       if (typeof isMobile !== 'boolean') {
         throw new Error('isMobile is not a boolean');
       }
+      const isNativeContext = await browser.isNativeContext;
+      console.log(`Is native context: ${isNativeContext} (type: ${typeof isNativeContext})`);
       await applePreferencesPage.launchApp();
       await applePreferencesPage.waitForPageDisplay();
       const isDisplayed = await applePreferencesPage.isPageDisplayed();
