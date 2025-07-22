@@ -11,6 +11,11 @@ describe('Debug', () => {
       }
       const isNativeContext = await browser.isNativeContext;
       console.log(`Is native context: ${isNativeContext} (type: ${typeof isNativeContext})`);
+      const availableContexts = await browser.getContexts();
+      console.log(`Available contexts: ${availableContexts.join(', ')}`);
+      await browser.switchContext('NATIVE_APP');
+      console.log('Switched to NATIVE_APP context');
+      console.log(`Is native context: ${await browser.isNativeContext} (type: ${typeof await browser.isNativeContext})`);
       await applePreferencesPage.launchApp();
       await applePreferencesPage.waitForPageDisplay();
       const isDisplayed = await applePreferencesPage.isPageDisplayed();
